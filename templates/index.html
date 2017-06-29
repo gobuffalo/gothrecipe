@@ -1,0 +1,6 @@
+<%= if (current_user) { %>
+  Hello <%= current_user.Name %>
+  <a href="/auth" data-method="DELETE">Log Out</a>
+<% } else { %>
+  <a href="/auth/github">Please Sign In</a>
+<% } %>
