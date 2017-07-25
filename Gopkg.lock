@@ -46,8 +46,8 @@
 [[projects]]
   name = "github.com/gobuffalo/buffalo"
   packages = [".","binding","middleware","middleware/csrf","middleware/i18n","render","worker"]
-  revision = "68f254fe1ce43f749b5313a2ae7821e1447248fc"
-  version = "v0.9.1"
+  revision = "c4ed92ec651e944b3bd4f08cb35773fb22321b84"
+  version = "v0.9.2"
 
 [[projects]]
   branch = "master"
@@ -71,7 +71,7 @@
   branch = "master"
   name = "github.com/gobuffalo/suite"
   packages = ["."]
-  revision = "f9e2b82967a3cb7dc69c10bb4156dc80f9a4e77e"
+  revision = "cadc8b8f7312c756757a25a3ede5aad79180cb0a"
 
 [[projects]]
   branch = "master"
@@ -160,20 +160,20 @@
 [[projects]]
   name = "github.com/markbates/pop"
   packages = [".","columns","fizz","fizz/translators","nulls"]
-  revision = "7f9beae0b7cf44cb51ebfccc315f4cedfcb0c8ac"
-  version = "v3.25.3"
+  revision = "742b5070af888256c415a561b079ac024e92dbee"
+  version = "v3.28.0"
 
 [[projects]]
   name = "github.com/markbates/refresh"
   packages = ["refresh","refresh/web"]
-  revision = "3b31d64dec02d89d735e1f60c05ed41a43c5207e"
-  version = "1.2.0"
+  revision = "ea691f3d039a952f2a7f1456bcbf6a6e49cea7a6"
+  version = "v1.3.2"
 
 [[projects]]
   branch = "master"
   name = "github.com/markbates/validate"
   packages = [".","validators"]
-  revision = "a493a25ad6300ad101d9f490fe31f48bfd808ba9"
+  revision = "b4702c95219d84d5c88a133f20490459b47ae866"
 
 [[projects]]
   branch = "master"
@@ -287,7 +287,7 @@
   branch = "master"
   name = "github.com/shurcooL/go"
   packages = ["parserutil","printerutil","reflectfind","reflectsource"]
-  revision = "b9e5dad7a86793a33644af3080d4c61798749c3a"
+  revision = "5924e6132c2f184e262d4bc779e5745fa297d093"
 
 [[projects]]
   branch = "master"
@@ -347,25 +347,25 @@
   branch = "master"
   name = "golang.org/x/crypto"
   packages = ["bcrypt","blowfish"]
-  revision = "7f7c0c2d75ebb4e32a21396ce36e87b6dadc91c9"
+  revision = "6914964337150723782436d56b3f21610a74ce7b"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/net"
   packages = ["context","context/ctxhttp","html","html/atom"]
-  revision = "b3756b4b77d7b13260a0a2ec658753cf48922eac"
+  revision = "ab5485076ff3407ad2d02db054635913f017b0ed"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/oauth2"
   packages = [".","internal"]
-  revision = "cce311a261e6fcf29de72ca96827bdb0b7d9c9e6"
+  revision = "b53b38ad8a6435bd399ea76d0fa74f23149cca4e"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/sys"
   packages = ["unix"]
-  revision = "4cd6d1a821c7175768725b55ca82f14683a29ea4"
+  revision = "85d149506305e7abe0aca5ad5ac4b1fce82ccd11"
 
 [[projects]]
   name = "google.golang.org/appengine"
@@ -377,11 +377,11 @@
   branch = "v2"
   name = "gopkg.in/yaml.v2"
   packages = ["."]
-  revision = "3b4ad1db5b2a649883ff3782f5f9f6fb52be71af"
+  revision = "25c4ec802a7d637f88d584ab26798e94ad14c13b"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "4788b6710cbd57e5056d3e4882208161312f9168c26957be36f031143e4a5196"
+  inputs-digest = "c3637815989cda5dbd972d38bf626f47a13a499aff0b3842ec17476d55f33d8d"
   solver-name = "gps-cdcl"
   solver-version = 1

@@ -23,7 +23,7 @@
 
 [[constraint]]
   name = "github.com/gobuffalo/buffalo"
-  version = "master"
+  version = "0.9.2"
 
 [[constraint]]
   branch = "master"
@@ -42,8 +42,12 @@
   version = "1.38.0"
 
 [[constraint]]
+  branch = "master"
+  name = "github.com/markbates/grift"
+
+[[constraint]]
   name = "github.com/markbates/pop"
-  version = "3.25.3"
+  version = "3.28.0"
 
 [[constraint]]
   branch = "master"
