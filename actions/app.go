@@ -27,8 +27,11 @@ func App() *buffalo.App {
 	if app == nil {
 		app = buffalo.Automatic(buffalo.Options{
 			Env:         ENV,
-			SessionName: "_coke_session",
+			SessionName: "_gothrecipe_session",
 		})
+		// Automatically save the session if the underlying
+		// Handler does not return an error.
+		app.Use(middleware.SessionSaver)
 
 		if ENV == "development" {
 			app.Use(middleware.ParameterLogger)

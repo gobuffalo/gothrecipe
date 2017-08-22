@@ -49,10 +49,6 @@ func AuthCallback(c buffalo.Context) error {
 	}
 
 	c.Session().Set("current_user_id", u.ID)
-	err = c.Session().Save()
-	if err != nil {
-		return errors.WithStack(err)
-	}
 
 	c.Flash().Add("success", "You have been logged in")
 	return c.Redirect(302, "/")
@@ -60,10 +56,6 @@ func AuthCallback(c buffalo.Context) error {
 
 func AuthDestroy(c buffalo.Context) error {
 	c.Session().Clear()
-	err := c.Session().Save()
-	if err != nil {
-		return errors.WithStack(err)
-	}
 	c.Flash().Add("success", "You have been logged out")
 	return c.Redirect(302, "/")
 }
