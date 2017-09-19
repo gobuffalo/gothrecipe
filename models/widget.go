@@ -40,13 +40,13 @@ func (w *Widget) Validate(tx *pop.Connection) (*validate.Errors, error) {
 	), nil
 }
 
-// ValidateSave gets run everytime you call "pop.ValidateSave" method.
+// ValidateCreate gets run everytime you call "pop.ValidateAndCreate" method.
 // This method is not required and may be deleted.
-func (w *Widget) ValidateSave(tx *pop.Connection) (*validate.Errors, error) {
+func (w *Widget) ValidateCreate(tx *pop.Connection) (*validate.Errors, error) {
 	return validate.NewErrors(), nil
 }
 
-// ValidateUpdate gets run everytime you call "pop.ValidateUpdate" method.
+// ValidateUpdate gets run everytime you call "pop.ValidateAndUpdate" method.
 // This method is not required and may be deleted.
 func (w *Widget) ValidateUpdate(tx *pop.Connection) (*validate.Errors, error) {
 	return validate.NewErrors(), nil

@@ -6,10 +6,12 @@ import (
 
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/gothrecipe/models"
+	"github.com/markbates/going/defaults"
 	"github.com/markbates/goth"
 	"github.com/markbates/goth/gothic"
 	"github.com/markbates/goth/providers/github"
 	"github.com/markbates/pop"
+	"github.com/markbates/pop/nulls"
 	"github.com/pkg/errors"
 )
 
@@ -34,21 +36,23 @@ func AuthCallback(c buffalo.Context) error {
 	}
 	u := &models.User{}
 	if exists {
-		err = q.First(u)
-		if err != nil {
-			return errors.WithStack(err)
-		}
-	} else {
-		u.Name = gu.Name
-		u.Provider = gu.Provider
-		u.ProviderID = gu.UserID
-		err = tx.Save(u)
-		if err != nil {
+		if err = q.First(u); err != nil {
 			return errors.WithStack(err)
 		}
 	}
+	u.Name = defaults.String(gu.Name, gu.NickName)
+	u.Provider = gu.Provider
+	u.ProviderID = gu.UserID
+	u.Email = nulls.NewString(gu.Email)
+	if err = tx.Save(u); err != nil {
+		return errors.WithStack(err)
+	}
 
+	fmt.Println("set current_user_id")
 	c.Session().Set("current_user_id", u.ID)
+	if err = c.Session().Save(); err != nil {
+		return errors.WithStack(err)
+	}
 
 	c.Flash().Add("success", "You have been logged in")
 	return c.Redirect(302, "/")
@@ -65,8 +69,7 @@ func SetCurrentUser(next buffalo.Handler) buffalo.Handler {
 		if uid := c.Session().Get("current_user_id"); uid != nil {
 			u := &models.User{}
 			tx := c.Value("tx").(*pop.Connection)
-			err := tx.Find(u, uid)
-			if err != nil {
+			if err := tx.Find(u, uid); err != nil {
 				return errors.WithStack(err)
 			}
 			c.Set("current_user", u)

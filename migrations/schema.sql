@@ -54,6 +54,7 @@ CREATE TABLE users (
     updated_at timestamp without time zone NOT NULL,
     id uuid NOT NULL,
     name character varying(255) NOT NULL,
+    email character varying(255),
     provider character varying(255) NOT NULL,
     provider_id character varying(255) NOT NULL
 );
