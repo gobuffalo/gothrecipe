@@ -33,17 +33,15 @@ func App() *buffalo.App {
 		if ENV == "development" {
 			app.Use(middleware.ParameterLogger)
 		}
-		if ENV != "test" {
-			// Protect against CSRF attacks. https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)
-			// Remove to disable this.
-			app.Use(csrf.Middleware)
-		}
+
+		// Protect against CSRF attacks. https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)
+		// Remove to disable this.
+		app.Use(csrf.New)
 
 		// Wraps each request in a transaction.
 		//  c.Value("tx").(*pop.PopTransaction)
 		// Remove to disable this.
 		app.Use(middleware.PopTransaction(models.DB))
-		app.Use(SetCurrentUser)
 
 		// Setup and use translations:
 		var err error
@@ -51,12 +49,14 @@ func App() *buffalo.App {
 			app.Stop(err)
 		}
 		app.Use(T.Middleware())
-		app.Use(Authorize)
 
 		app.GET("/", HomeHandler)
-		app.Middleware.Skip(Authorize, HomeHandler)
 
-		app.ServeFiles("/assets", packr.NewBox("../public/assets"))
+		app.ServeFiles("/assets", assetsBox)
+
+		app.Use(SetCurrentUser)
+		app.Use(Authorize)
+		app.Middleware.Skip(Authorize, HomeHandler)
 
 		auth := app.Group("/auth")
 		bah := buffalo.WrapHandlerFunc(gothic.BeginAuthHandler)

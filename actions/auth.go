@@ -48,7 +48,6 @@ func AuthCallback(c buffalo.Context) error {
 		return errors.WithStack(err)
 	}
 
-	fmt.Println("set current_user_id")
 	c.Session().Set("current_user_id", u.ID)
 	if err = c.Session().Save(); err != nil {
 		return errors.WithStack(err)
