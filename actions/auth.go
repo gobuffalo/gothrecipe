@@ -6,12 +6,12 @@ import (
 
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/gothrecipe/models"
+	"github.com/gobuffalo/pop"
+	"github.com/gobuffalo/pop/nulls"
 	"github.com/markbates/going/defaults"
 	"github.com/markbates/goth"
 	"github.com/markbates/goth/gothic"
 	"github.com/markbates/goth/providers/github"
-	"github.com/markbates/pop"
-	"github.com/markbates/pop/nulls"
 	"github.com/pkg/errors"
 )
 
