@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/markbates/pop"
+	"github.com/gobuffalo/pop"
 	"github.com/markbates/validate"
 	"github.com/markbates/validate/validators"
 	"github.com/satori/go.uuid"

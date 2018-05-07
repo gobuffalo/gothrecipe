@@ -4,9 +4,9 @@ import (
 	"net/http"
 
 	"github.com/gobuffalo/gothrecipe/models"
+	"github.com/gobuffalo/pop/nulls"
 	"github.com/markbates/goth"
 	"github.com/markbates/goth/gothic"
-	"github.com/markbates/pop/nulls"
 )
 
 func (as *ActionSuite) Test_AuthCallback_NewUser() {
