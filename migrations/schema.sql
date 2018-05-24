@@ -2,17 +2,12 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.3
--- Dumped by pg_dump version 9.6.3
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
-SET row_security = off;
 
 --
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
@@ -35,7 +30,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: schema_migration; Type: TABLE; Schema: public; Owner: postgres
+-- Name: schema_migration; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE schema_migration (
@@ -46,38 +41,38 @@ CREATE TABLE schema_migration (
 ALTER TABLE schema_migration OWNER TO postgres;
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: postgres
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE users (
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     id uuid NOT NULL,
     name character varying(255) NOT NULL,
     email character varying(255),
     provider character varying(255) NOT NULL,
-    provider_id character varying(255) NOT NULL
+    provider_id character varying(255) NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
 ALTER TABLE users OWNER TO postgres;
 
 --
--- Name: widgets; Type: TABLE; Schema: public; Owner: postgres
+-- Name: widgets; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE widgets (
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     id uuid NOT NULL,
-    name character varying(255) NOT NULL
+    name character varying(255) NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
 ALTER TABLE widgets OWNER TO postgres;
 
 --
--- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY users
@@ -85,7 +80,7 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: widgets widgets_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: widgets_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY widgets
@@ -93,17 +88,27 @@ ALTER TABLE ONLY widgets
 
 
 --
--- Name: users_provider_provider_id_idx; Type: INDEX; Schema: public; Owner: postgres
+-- Name: schema_migration_version_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE UNIQUE INDEX schema_migration_version_idx ON schema_migration USING btree (version);
+
+
+--
+-- Name: users_provider_provider_id_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE UNIQUE INDEX users_provider_provider_id_idx ON users USING btree (provider, provider_id);
 
 
 --
--- Name: version_idx; Type: INDEX; Schema: public; Owner: postgres
+-- Name: public; Type: ACL; Schema: -; Owner: yq
 --
 
-CREATE UNIQUE INDEX version_idx ON schema_migration USING btree (version);
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM yq;
+GRANT ALL ON SCHEMA public TO yq;
+GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
 --
